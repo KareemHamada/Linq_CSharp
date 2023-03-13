@@ -45,6 +45,23 @@ namespace Linq
             students.Add(studentHoda.setStudentValues(studentHoda, 5, "Hoda", "hassan", "Female"));
 
             ////=================================== Header =====================================
+            ////=================================== Video 4 Aggregate function ==================
+            // return string like => "India, US, UK, Canada, Australia"
+            //string[] countries = { "India", "US", "UK", "Canada", "Australia" };
+            //string result = countries.Aggregate((a,b) => a + ", "+b);
+            //Console.WriteLine(result);
+
+            //// get product(*) of all numbers 
+            int[] Numbers = { 2, 3, 4, 5 };
+            // without seed parameter
+            int product = Numbers.Aggregate((a, b) => a * b);
+            Console.WriteLine(product);
+            // without seed parameter
+            int seedProduct = Numbers.Aggregate(10,(a, b) => a * b);
+            Console.WriteLine(seedProduct);
+
+
+            ////=================================== Header =====================================
             ////=================================== Video 3 Aggregate functions ==================
             //int[] Numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             //int smallest = Numbers.Min();
@@ -72,18 +89,18 @@ namespace Linq
             //double AverageOfAllEvenNumbers = Numbers.Where(a => a % 2 == 0).Average();
             //Console.WriteLine(AverageOfAllEvenNumbers);
 
-            // find shortes country name and number of character on it
-            string[] countries = { "India", "USA", "UK" };
-            int shorestNameCount = countries.Min(a => a.Length);
-            Console.WriteLine(shorestNameCount);
-            string shorestName = countries.Where(a => a.Length == shorestNameCount).FirstOrDefault();
-            Console.WriteLine(shorestName);
-           
-            int LargestNameCount = countries.Max(a => a.Length);
-            Console.WriteLine(LargestNameCount);
+            //// find shortes country name and number of character on it
+            //string[] countries = { "India", "USA", "UK" };
+            //int shorestNameCount = countries.Min(a => a.Length);
+            //Console.WriteLine(shorestNameCount);
+            //string shorestName = countries.Where(a => a.Length == shorestNameCount).FirstOrDefault();
+            //Console.WriteLine(shorestName);
 
-            string LargestName = countries.Where(a => a.Length == LargestNameCount).FirstOrDefault();
-            Console.WriteLine(LargestName);
+            //int LargestNameCount = countries.Max(a => a.Length);
+            //Console.WriteLine(LargestNameCount);
+
+            //string LargestName = countries.Where(a => a.Length == LargestNameCount).FirstOrDefault();
+            //Console.WriteLine(LargestName);
 
 
 
