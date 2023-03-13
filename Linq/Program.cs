@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,44 +26,130 @@ namespace Linq
             }
             Console.WriteLine();
         }
+
+        private static bool isEven(int num)
+        {
+            return num % 2 == 0;
+        }
         static void Main(string[] args)
         {
-            List<Student> students = new List<Student>();
+            ////=================================== Header =====================================
+            ////=================================== Video 7 SelectMany Operator ==================
+            //// without duplications values
+            //var subjects = Student2.GetAllStudetns().SelectMany(x => x.Subjects).Distinct();
+            //// with ducplications values
+            //var subjects = Student2.GetAllStudetns().SelectMany(x => x.Subjects);
+            //foreach (var subject in subjects)
+            //{
+            //    Console.WriteLine(subject);
+            //}
 
-            Student studentAli = new Student();
-            students.Add(studentAli.setStudentValues(studentAli,1, "ali", "mohamed", "Male"));
+            //// with duplicates
+            //var subjects = from Student in Student2.GetAllStudetns()
+            //               from subject in Student.Subjects
+            //               select subject;
+            //foreach (var subject in subjects)
+            //{
+            //    Console.WriteLine(subject);
+            //}
+            //// without duplicates
+            //var subjects = (from Student in Student2.GetAllStudetns()
+            //                from subject in Student.Subjects
+            //                select subject).Distinct();
+            //foreach (var subject in subjects)
+            //{
+            //    Console.WriteLine(subject);
+            //}
 
-            Student studentAhmed = new Student();
-            students.Add(studentAhmed.setStudentValues(studentAhmed, 2, "ahmed", "saad", "Male"));
 
-            Student studentAfaf = new Student();
-            students.Add(studentAfaf.setStudentValues(studentAfaf, 3, "afaf", "sayed", "Female"));
+            //var result = Student2.GetAllStudetns().SelectMany(s => s.Subjects, (student, subject) => new { studentName = student.Name, subjectName = subject });
 
-            Student studentAmr = new Student();
-            students.Add(studentAmr.setStudentValues(studentAmr, 4, "amr", "khaled", "Male"));
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item.studentName + " : " + item.subjectName);
+            //}
 
-            Student studentHoda = new Student();
-            students.Add(studentHoda.setStudentValues(studentHoda, 5, "Hoda", "hassan", "Female"));
+            //var result = from student in Student2.GetAllStudetns()
+            //             from subject in student.Subjects
+            //             select new { studentName = student.Name, subjectName =  subject };
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item.studentName + " : " + item.subjectName);
+            //}
+
+            //string[] stringArray =
+            //{
+            //    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            //    "0123456789"
+            //};
+
+            //IEnumerable<char> result = stringArray.SelectMany(s => s);
+            //// ==
+            //IEnumerable<char> result = from s in stringArray
+            //                           from c in s
+            //                           select c;
+            //foreach (char c in result)
+            //    Console.WriteLine(c);
 
             ////=================================== Header =====================================
-            ////=================================== Video 4 Aggregate function ==================
+            ////=================================== Video 6 Restriction Operators ==================
+
+            //List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //Func<int, bool> predicate = x => x % 2 == 0;
+            //IEnumerable<int> evenNumbers = numbers.Where(predicate);
+            //IEnumerable<int> evenNumbers = numbers.Where(num=>isEven(num));
+
+            //IEnumerable<int> evenNumbers = from num in numbers
+            //                               where num %2==0
+            //                               select num;
+
+            //// return all numbers and index of it
+            //var evenNumbers = numbers.Select((num, index) => new { Number = num, Index = index });
+
+            //// return even numbers and index of it
+            //var evenNumbers = numbers.Select((num, index) => new { Number = num, Index = index }).Where(x=>x.Number %2==0);
+            //foreach (var i in evenNumbers)
+            //{
+            //    Console.WriteLine(i.Index + " : " +i.Number);
+            //}
+            //// return even numbers index only
+            //var evenNumbers = numbers.Select((num, index) => new { Number = num, Index = index }).Where(x => x.Number % 2 == 0).Select(a=>a.Index);
+            //foreach (var i in evenNumbers)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
+            //// return male employees that all at IT and HR departments
+            //EmployeeModel context = new EmployeeModel();
+            //IEnumerable<Department> departments = context.Departments.Where(x => x.Name == "IT" || x.Name == "HR");
+            //foreach (var department in departments)
+            //{
+            //    Console.WriteLine(department.Name);
+            //    IEnumerable<Employee> employees= department.Employees.Where(x => x.Gender == "Male");
+            //    foreach (var employee in employees)
+            //    {
+            //        Console.WriteLine("\tEmployee Name = "+ employee.FirstName + " " + employee.LastName);
+            //    }
+            //}
+            ////=================================== Header =====================================
+            ////=================================== Video 5 Aggregate function ==================
             // return string like => "India, US, UK, Canada, Australia"
             //string[] countries = { "India", "US", "UK", "Canada", "Australia" };
             //string result = countries.Aggregate((a,b) => a + ", "+b);
             //Console.WriteLine(result);
 
             //// get product(*) of all numbers 
-            int[] Numbers = { 2, 3, 4, 5 };
-            // without seed parameter
-            int product = Numbers.Aggregate((a, b) => a * b);
-            Console.WriteLine(product);
-            // without seed parameter
-            int seedProduct = Numbers.Aggregate(10,(a, b) => a * b);
-            Console.WriteLine(seedProduct);
+            //int[] Numbers = { 2, 3, 4, 5 };
+            //// without seed parameter
+            //int product = Numbers.Aggregate((a, b) => a * b);
+            //Console.WriteLine(product);
+            //// without seed parameter
+            //int seedProduct = Numbers.Aggregate(10,(a, b) => a * b);
+            //Console.WriteLine(seedProduct);
 
 
             ////=================================== Header =====================================
-            ////=================================== Video 3 Aggregate functions ==================
+            ////=================================== Video 4 Aggregate functions ==================
             //int[] Numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             //int smallest = Numbers.Min();
             //Console.WriteLine(smallest);
@@ -118,6 +205,26 @@ namespace Linq
 
             //IEnumerable<int> EvenNumbers = Numbers.Where(n => n % 2 == 0);
             //IEnumerable<int> EvenNumbers2 = Enumerable.Where(Numbers,n => n % 2 == 0);
+
+
+            //List<Student> students = new List<Student>();
+
+            //Student studentAli = new Student();
+            //students.Add(studentAli.setStudentValues(studentAli, 1, "ali", "mohamed", "Male"));
+
+            //Student studentAhmed = new Student();
+            //students.Add(studentAhmed.setStudentValues(studentAhmed, 2, "ahmed", "saad", "Male"));
+
+            //Student studentAfaf = new Student();
+            //students.Add(studentAfaf.setStudentValues(studentAfaf, 3, "afaf", "sayed", "Female"));
+
+            //Student studentAmr = new Student();
+            //students.Add(studentAmr.setStudentValues(studentAmr, 4, "amr", "khaled", "Male"));
+
+            //Student studentHoda = new Student();
+            //students.Add(studentHoda.setStudentValues(studentHoda, 5, "Hoda", "hassan", "Female"));
+
+
             ////=================================== Header =====================================
             ////======================== Video 2 using lampda and query expression =============
 
@@ -168,7 +275,7 @@ namespace Linq
             //                  where num %2 ==0
             //                  select num).ToList();
             //PrintList(list);
-            ; Console.ReadKey();
+            Console.ReadKey();
         }
     }
 
